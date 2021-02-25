@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Redacted!</title>
+  
+  <style>
+  body{
+ font-family: "courier";
+ abackground-color: #333;
+ acolor: #999;
+}
+
+#glue {
+ color: #cc33ff;
+ text-shadow: 0 0 5px rgba(0,160,240,1);
+}
+#text{
+
+	text-align: center;
+	amargin-top: 10%
+}
+#template{
+	background-color: #fff;
+	color: #000;
+	apadding-left: 5%;
+	apadding-right: 5%;
+	amargin-left: 25%;
+	amargin-right: 25%;
+	line-height: 150%;
+}
+button{
+	font-family: "courier";
+}
+input{font-family: "courier"};
+
+  </style>
+
+  
+</head>
+<body>
+	<div id="text">
+ <h2>
+  Shattered Calm
+ </h2>
+ <iframe src="https://www.google.com/maps/d/embed?mid=1Awq0TY2YmU8CWFPQuizDRe5u4A3Bf0PR" width="100%" height="1000"></iframe>
+ </div>
+ <script>
+ 
+var output, input, sentence_length, period,sentence_quantity,rand_sent_length;
+var stand_dev=3;
+
+function submit(){
+ 	output ="";
+	period=". ";
+	input=document.getElementById('length').value;
+	sentence_length=input;
+	sentence_quantity=1;
+	rand_sent_length=1;
+	if(input>0){
+		rand_sent_length=0;
+		period="";
+	}else if(input<0){
+		input*=-1;
+		//sentence_length=Math.floor(Math.random(5)*10)+5;
+		sentence_quantity=input;
+	}else if(input.length>0){
+		sentence_quantity=0;
+		for(n=0;n<input.length;n++){
+			switch(input[n]){
+				case '.':
+				output+=".";
+				break;
+
+				case '?':
+				output+='?';
+				break;
+
+				case '!':
+				output+='!';
+				break;
+
+				case ',':
+				output+=',';
+				break;
+
+				case ':':
+				output+=':';
+				break;
+
+				case ' ':
+				output+=" ";
+				break;
+
+				default:
+				output+="&#x2588;";
+			}
+		}
+	}else{
+		//sentence_length=Math.floor(Math.random()*10)+5;
+		sentence_quantity=Math.floor(Math.random()*5)+1;
+	}
+
+	for(m=0;m<sentence_quantity;m++){
+		if(rand_sent_length){
+			sentence_length=Math.floor(Math.random()*10)+5;
+		}
+		for(i=0; i<sentence_length;i++){
+			var word_length=Math.floor(gaussianRand()*8)+1;
+			for(j=0;j<word_length;j++){
+				output+="&#x2588;"
+			}
+			output+=" ";
+		}
+		output=output.substring(0, output.length-1);
+		output+=period;
+	}
+ document.getElementById('template').innerHTML=output;
+}
+
+//copy/pasted from stack overflow- 
+//creates a random number with a normal, not uniform, distribution
+//increase stand_dev to sharpen the curve
+function gaussianRand() {
+  var rand = 0;
+
+  for (var i = 0; i < stand_dev; i += 1) {
+    rand += Math.random();
+  }
+
+  return rand / stand_dev;
+}
+
+ </script>
+ 
+</body>
+</html>
