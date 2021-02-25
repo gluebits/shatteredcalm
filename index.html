@@ -46,11 +46,15 @@ input{font-family: "courier"};
  </h2>
  <p>FICMAT // FSUO</p>
  <p>gwu strategic crisis simulations</p>
- <p>refresh page for updates</p>
- <iframe src="https://www.google.com/maps/d/embed?mid=1Awq0TY2YmU8CWFPQuizDRe5u4A3Bf0PR" width="100%" height="1000"></iframe>
+ <p><button onclick="refresh()">refresh</button> page for updates</p>
+ <div id="box"><iframe src="https://www.google.com/maps/d/embed?mid=1Awq0TY2YmU8CWFPQuizDRe5u4A3Bf0PR" width="100%" height="1000"></iframe></div>
  </div>
  <script>
  
+function refresh(){
+	document.getElementById('box').innerHTML="<iframe src=\"https://www.google.com/maps/d/embed?mid=1Awq0TY2YmU8CWFPQuizDRe5u4A3Bf0PR\" width=\"100%\" height=\"1000\"></iframe>"
+}
+
 var output, input, sentence_length, period,sentence_quantity,rand_sent_length;
 var stand_dev=3;
 
